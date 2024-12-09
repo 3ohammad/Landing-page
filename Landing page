@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترويج المنتج</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            direction: rtl;
+        }
+        header {
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: #e9f7ef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .cta {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .product {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            margin: 40px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease-in-out;
+        }
+        .product img {
+            flex: 1 1 40%;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product-details {
+            flex: 1 1 50%;
+        }
+        .product-details h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .product-details p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+        .popup h3 {
+            margin-bottom: 15px;
+        }
+        .popup button {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>أفضل منتجاتنا لك!</h1>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <h2>احصل على المنتج المثالي اليوم</h2>
+            <p>اكتشف الجودة والتصميم الرائع بأسعار لا تقبل المنافسة.</p>
+            <button class="cta">اشترِ الآن</button>
+        </section>
+        <section class="product">
+            <img src="https://via.placeholder.com/400x300" alt="صورة المنتج">
+            <div class="product-details">
+                <h3>اسم المنتج</h3>
+                <p>وصف موجز عن المنتج ومميزاته الرئيسية. يقدم هذا المنتج أداءً رائعًا وجودة عالية تلبي جميع احتياجاتك.</p>
+                <button class="cta">اشترِ الآن</button>
+            </div>
+        </section>
+    </div>
+    <div class="popup" id="popup">
+        <h3>شكراً لاختيارك منتجنا!</h3>
+        <p>سنتواصل معك قريبًا لإكمال عملية الشراء.</p>
+        <button onclick="closePopup()">إغلاق</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <footer>
+        <p>&copy; 2024 جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // نافذة منبثقة عند الضغط على زر "اشترِ الآن"
+        const buttons = document.querySelectorAll('.cta');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // تأثيرات التمرير
+        const productSection = document.querySelector('.product');
+        window.addEventListener('scroll', () => {
+            const sectionPosition = productSection.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            if (sectionPosition < screenPosition) {
+                productSection.style.opacity = '1';
+                productSection.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+</body>
+</html>
